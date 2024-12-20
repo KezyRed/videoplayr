@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<style>
+    .red { background: #8B0000; }
+</style>
 <div class="container">
     <h1>Видео</h1>
     <div class="row">
@@ -13,7 +16,7 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ video.title }}</h5>
                         <p class="card-text">{{ video.description|truncatewords:20 }}</p>
-                        <a href="{{ video.get_absolute_url }}" class="btn btn-primary">Смотреть</a>
+                        <a href="{{ video.get_absolute_url }}" class="btn red" >Смотреть</a>
                     </div>
                 </div>
             </div>
