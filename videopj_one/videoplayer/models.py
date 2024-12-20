@@ -1,8 +1,9 @@
 from django.db import models
+from django.urls import reverse
+
 
 # Create your models here.
-from django.db import models
-from django.urls import reverse
+
 
 class Video(models.Model):
     title = models.CharField(max_length=200)
