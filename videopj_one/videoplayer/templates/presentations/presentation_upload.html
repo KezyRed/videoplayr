@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Презентации</h2>
+<a href="{% url 'presentation_upload' %}">Загрузить новую презентацию</a>
+<ul>
+{% for presentation in presentations %}
+    <li>{{ presentation.title }}</li>
+{% endfor %}
+</ul>
+{% endblock %}
