@@ -2,7 +2,7 @@ from django.db import models
 from django.urls import reverse
 from django.db import models
 from django.contrib.auth.models import User
-
+from django.conf import settings
 
 # Create your models here.
 class Video(models.Model):
@@ -21,9 +21,17 @@ class Video(models.Model):
 class Presentation(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField(blank=True)
-    video_file = models.FileField(upload_to='presentations/')
+    presentation_file = models.FileField(upload_to='presentations/')
     thumbnail = models.ImageField(upload_to='thumbnails/', blank=True, null=True)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    
+    # Используем settings.AUTH_USER_MODEL для гибкости
+    author = models.ForeignKey(
+        settings.AUTH_USER_MODEL, 
+        on_delete=models.SET_NULL,  # Если пользователь удален, автор остается
+        null=True,  # Разрешаем null
+        blank=True  # Разрешаем пустое поле в формах
+    )
+    
     created_at = models.DateTimeField(auto_now_add=True)
     views_count = models.IntegerField(default=0)
     likes_count = models.IntegerField(default=0)

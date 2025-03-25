@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="presentation-detail">
+    <h1>{{ presentation.title }}</h1>
+    
+    <div class="video-container">
+        <video controls>
+            <source src="{{ presentation.video_file.url }}" type="video/mp4">
+            Ваш браузер не поддерживает видео
+        </video>
+    </div>
+
+    <div class="presentation-info">
+        <p>{{ presentation.description }}</p>
+        <div class="metadata">
+            <span>Автор: {{ presentation.author.username }}</span>
+            <span>Дата создания: {{ presentation.created_at }}</span>
+            <span>Просмотров: {{ presentation.views_count }}</span>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="presentation-viewer">
+    <h2>Просмотр презентации</h2>
+    {% for slide in slides %}
+        <img src="{% static slide %}" alt="Слайд {{ forloop.counter }}" class="slide">
+    {% endfor %}
+</div>
+{% endblock %}
