@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="presentation-feed">
+    <h1>Лента презентаций</h1>
+    
+    <div class="presentations-grid">
+        {% for presentation in presentations %}
+        <div class="presentation-card">
+            <a href="{% url 'presentation_detail' presentation.pk %}">
+                {% if presentation.thumbnail %}
+                    <img src="{{ presentation.thumbnail.url }}" alt="{{ presentation.title }}">
+                {% else %}
+                    <div class="placeholder-thumbnail">Нет изображения</div>
+                {% endif %}
+                
+                <div class="presentation-info">
+                    <h3>{{ presentation.title }}</h3>
+                    <p>Автор: {{ presentation.author.username }}</p>
+                    <div class="presentation-stats">
+                        <span>👀 {{ presentation.views_count }}</span>
+                        <span>❤️ {{ presentation.likes_count }}</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+
+    {% include 'includes/pagination.html' %}
+</div>
+{% endblock %}
